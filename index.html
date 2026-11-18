@@ -6,16 +6,16 @@
 <title>舒華 × Qeelin 應援企劃</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Noto+Sans+TC:wght@400;500&family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Noto+Sans+TC:wght@400;500&family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#F2F1EC; --paper:#F7F6F2; --ink:#111110; --soft:#6F6D67; --line:#D9D7CF; --dim:#A7A49C;
-    --mono:'Space Mono','Noto Sans TC','Noto Sans KR',ui-monospace,Menlo,monospace;
+    --mono:'Inter Tight','Noto Sans TC','Noto Sans KR',-apple-system,system-ui,sans-serif;
     padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
   }
   *{box-sizing:border-box;}
   html,body{margin:0; padding:0;}
-  body{background:var(--bg); color:var(--ink); font-family:var(--mono); font-size:11px; line-height:1.45; letter-spacing:.02em; -webkit-font-smoothing:antialiased; text-transform:none;}
+  body{background:var(--bg); color:var(--ink); font-family:var(--mono); font-size:11.5px; line-height:1.45; letter-spacing:.03em; font-weight:500; -webkit-font-smoothing:antialiased; text-transform:none;}
   a{color:inherit;}
   button{font-family:inherit; letter-spacing:inherit;}
   button:focus-visible,a:focus-visible{outline:1px solid var(--ink); outline-offset:3px;}
@@ -55,7 +55,7 @@
   .stat-strip{display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
   .stat-cell{padding:14px 0 12px;}
   .stat-cell + .stat-cell{padding-left:12px; border-left:1px solid var(--line);}
-  .stat-num{display:block; font-size:30px; line-height:1; letter-spacing:-.02em; font-variant-numeric:tabular-nums;}
+  .stat-num{display:block; font-size:34px; font-weight:400; line-height:1; letter-spacing:-.03em; font-variant-numeric:tabular-nums;}
   .stat-label{display:block; margin-top:8px; color:var(--soft); text-transform:uppercase; font-size:10px;}
   .stat-label::before{content:"("} .stat-label::after{content:")"}
 
@@ -79,7 +79,7 @@
   .post-top{display:flex; align-items:baseline; gap:10px; min-width:0;}
   .plat-badge{text-transform:uppercase; font-size:10px; color:var(--soft); flex-shrink:0;}
   .plat-badge::before{content:"["} .plat-badge::after{content:"]"}
-  .post-account{font-size:13px; flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .post-account{font-size:14px; letter-spacing:0; flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
   .pin-mark{font-size:9.5px; text-transform:uppercase; border:1px solid currentColor; border-radius:20px; padding:0 6px; flex-shrink:0;}
   .post-note{margin:4px 0 0; color:var(--soft); font-size:10.5px;}
   .post-actions{display:flex; align-items:center; gap:12px;}
@@ -101,7 +101,7 @@
   @media (min-width:600px){ .sheet-bg{align-items:center;} .sheet{border:1px solid var(--ink);} }
   @keyframes up{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
   .sheet-head{display:flex; align-items:baseline; gap:10px; padding-bottom:12px; margin-bottom:14px; border-bottom:1px solid var(--line);}
-  .sheet-acc{font-size:15px; flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .sheet-acc{font-size:16px; letter-spacing:0; flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
   .sheet-x{background:none; border:0; padding:0; font-size:10.5px; cursor:pointer; text-transform:uppercase;}
   .box{border-bottom:1px solid var(--line); padding:0 0 14px; margin-bottom:14px;}
   .box-head{display:flex; align-items:baseline; gap:14px; margin-bottom:10px; flex-wrap:wrap;}
@@ -113,7 +113,7 @@
   .capseg button.active{color:var(--ink);}
   .capseg button.active::before{content:"("} .capseg button.active::after{content:")"}
   .cap{font-size:15px; line-height:1.55; font-family:'Noto Sans TC','Noto Sans KR',var(--mono);}
-  html[lang="en"] .cap{font-family:var(--mono); font-size:14px;}
+  html[lang="en"] .cap{font-family:var(--mono); font-size:15px; letter-spacing:0;}
   html[lang="ko"] .cap{font-family:'Noto Sans KR','Noto Sans TC',var(--mono);}
   .tags{white-space:pre-wrap; word-break:break-word; font-size:12px; line-height:1.7;}
   .big-rand{width:100%; background:none; border:1px dashed var(--ink); padding:14px; font-size:10.5px; cursor:pointer; text-transform:uppercase;}
