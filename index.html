@@ -170,13 +170,11 @@
     // { link:"https://www.instagram.com/p/xxxx/", account:"舒華", note:"站台照片", pinned:true },
   ];
 
-  // ② Hashtag（依平台；空白 = 不顯示）。平台代碼：IG X TT FB YT WB DY TH XHS
-  var DEFAULT_HASHTAGS = {
-    _all: "#Qeelin #QeelinJewellery\n#슈화 #SHUHUA #舒華 #シュファ\n#아이들 #idle #アイドゥル",
-    IG:   "#Qeelin #QeelinJewellery\n#슈화 #SHUHUA #舒華 #シュファ\n#아이들 #idle #アイドゥル\n@yeh.shaa_ @qeelinjewellery"
-  };
-  // ③ 留言提示要 tag 的帳號（空白 = 不用 tag）
-  var COMMENT_TAGS = { _all:"", IG:"@yeh.shaa_ @qeelinjewellery" };
+  // ② Hashtag 與各平台要 tag 的帳號（空白 = 不用 tag）。平台代碼：IG X TT FB YT WB DY TH XHS
+  var H = "#Qeelin #QeelinJewellery\n#슈화 #SHUHUA #舒華 #シュファ\n#아이들 #idle #アイドゥル";
+  var COMMENT_TAGS = { _all:"", IG:"@yeh.shaa_ @qeelinjewellery", X:"@official_i-dle", TT:"@official_i-dle", XHS:"@叶舒华 - I-DLE @Qeelin麒麟", WB:"@叶舒华_i-dle @Qeelin麒麟" };
+  var DEFAULT_HASHTAGS = { _all: H };
+  Object.keys(COMMENT_TAGS).forEach(function(k){ if(k!=="_all" && COMMENT_TAGS[k]) DEFAULT_HASHTAGS[k] = H + "\n" + COMMENT_TAGS[k]; });
 
   // ④ 活動資訊
   var EVENT = { date:"2026-11-18" };
@@ -231,21 +229,21 @@ ko:[
       goEngage:"前往互動", hashtags:"HASHTAGS", copyTags:"複製 Hashtag", randCap:"隨機文案", randomize:"換一則", copyMsg:"複製文案",
       copyAll:"複製文案 + Hashtag", goPost:"去留言！", noLink:"連結更新中", markDoneBtn:"✓ 完成", undoDone:"↺ 取消完成",
       copied:"已複製 ✓", copyFail:"複製失敗，請長按手動複製",
-      tips:"按讚、轉發和收藏<br>複製文案 → 貼在留言區{TAG}<br>同一則貼文不要重複貼同一句，每次換一則",
+      tips:"❤️ 按讚、轉發和收藏<br>📝 複製文案 → 貼在留言區{TAG}<br>📱 文案 + # → 發貼文 / Reels（分享並收藏 ✨）<br>#️⃣ 只複製 # → 貼在限動（效果更好）",
       markDone:"標記我已完成", emptyView:"貼文整理中，有新貼文會更新在這裡。", loadErr:"讀取任務清單失敗，請稍後重新整理。",
       post:"貼文", footer:"舒華 × Qeelin 應援企劃 · 粉絲自發整理維護" },
     en:{ statTotal:"Total", statDone:"Done", statPending:"Pending", sectionTitle:"Engagement Tasks", updatedAt:"Updated ", filterAll:"All platforms", live:"Live now",
       goEngage:"Engage", hashtags:"HASHTAGS", copyTags:"Copy Hashtags", randCap:"Random Comment", randomize:"Randomize", copyMsg:"Copy",
       copyAll:"Copy Comment + Hashtags", goPost:"Go comment!", noLink:"Link coming soon", markDoneBtn:"✓ Done", undoDone:"↺ Undo",
       copied:"Copied ✓", copyFail:"Copy failed, long-press to copy",
-      tips:"Like, repost & save<br>Copy a comment → paste it under the post{TAG}<br>Use a different comment each time on the same post",
+      tips:"❤️ Like, Repost & Save<br>📝 Copy message → paste as a comment{TAG}<br>📱 Message + # → create a Post / Reels (share and save ✨)<br>#️⃣ Copy # only → paste in Stories (more impact)",
       markDone:"Mark as done", emptyView:"Posts are being collected. New ones will show up here.", loadErr:"Couldn't load the task list. Try refreshing.",
       post:"post", footer:"Shuhua × Qeelin Fan Project · Maintained by fans" },
     ko:{ statTotal:"전체", statDone:"완료", statPending:"남은 응원", sectionTitle:"응원 미션", updatedAt:"업데이트 ", filterAll:"전체 플랫폼", live:"진행 중",
       goEngage:"참여하기", hashtags:"HASHTAGS", copyTags:"해시태그 복사", randCap:"랜덤 멘트", randomize:"다른 멘트", copyMsg:"복사",
       copyAll:"멘트 + 해시태그 복사", goPost:"댓글 달러 가기!", noLink:"링크 준비 중", markDoneBtn:"✓ 완료", undoDone:"↺ 취소",
       copied:"복사됨 ✓", copyFail:"복사 실패, 길게 눌러 복사하세요",
-      tips:"좋아요, 리포스트, 저장<br>멘트 복사 → 댓글에 붙여넣기{TAG}<br>같은 게시물에는 매번 다른 멘트를 사용해 주세요",
+      tips:"❤️ 좋아요, 리포스트, 저장<br>📝 멘트 복사 → 댓글에 붙여넣기{TAG}<br>📱 멘트 + # → 게시물 / 릴스 올리기 (공유하고 저장 ✨)<br>#️⃣ #만 복사 → 스토리에 붙여넣기 (효과 더 좋아요)",
       markDone:"완료 표시", emptyView:"게시물을 정리하고 있어요. 새 게시물은 여기에 올라와요.", loadErr:"미션 목록을 불러오지 못했어요. 새로고침해 주세요.",
       post:"게시물", footer:"슈화 × Qeelin 응원 프로젝트 · 팬들이 직접 정리" }
   };
@@ -375,7 +373,7 @@ ko:[
     var p=findPost(sheetKey); if(!p){ closeSheet(); return; }
     var mine=!!myDone[sheetKey], tags=tagsOf(p);
     var ctag=Object.prototype.hasOwnProperty.call(COMMENT_TAGS,p.platform)?COMMENT_TAGS[p.platform]:COMMENT_TAGS._all;
-    var tagTxt = ctag ? (lang==="zh"?"，並 tag "+ctag : lang==="ko"?" (태그: "+ctag+")" : " with "+ctag) : "";
+    var tagTxt = ctag ? (lang==="zh"?"，並 tag "+ctag : lang==="ko"?", "+ctag+" 태그" : " with "+ctag) : "";
     var seg='<div class="capseg">'+["zh","en","ko"].map(function(l){ return '<button data-cl="'+l+'" class="'+(curCapLang()===l?"active":"")+'">'+CAP_LABEL[l]+'</button>'; }).join("")+'</div>';
     var capHtml = curCaption
       ? '<div class="box-head"><span class="box-label">'+t("randCap")+'</span><button class="mini" id="btnRand">↻ '+t("randomize")+'</button><button class="mini" id="btnCopyCap">⧉ '+t("copyMsg")+'</button></div>'+seg+'<div class="cap">'+escapeHtml(curCaption)+'</div>'
@@ -390,7 +388,7 @@ ko:[
       (tags?'<div class="box"><div class="box-head"><span class="box-label">'+t("hashtags")+'</span><button class="mini" id="btnCopyTags">⧉ '+t("copyTags")+'</button></div><div class="tags">'+escapeHtml(tags)+'</div></div>':'')+
       (curCaption&&tags?'<button class="copy-all" id="btnCopyAll">⧉ '+t("copyAll")+'</button>':'')+
       '<div class="sheet-actions">'+go+'<button class="mark-done'+(mine?" is-done":"")+'" id="btnDone">'+(mine?t("undoDone"):t("markDoneBtn"))+'</button></div>'+
-      '<p class="tips">'+t("tips").replace("{TAG}",tagTxt)+'</p>';
+      '<p class="tips">'+(function(){ var l=t("tips").replace("{TAG}",tagTxt).split("<br>"); return (tags?l:l.slice(0,2)).join("<br>"); })()+'</p>';
     document.getElementById("btnClose").onclick=closeSheet;
     document.getElementById("btnRand").onclick=function(){ curCaption=pickCaption(); renderSheet(); };
     document.querySelectorAll(".capseg button").forEach(function(b){ b.onclick=function(){ capLang=b.getAttribute("data-cl"); put("sq_caplang",capLang); curCaption=curCaption?pickCaption():""; renderSheet(); }; });
